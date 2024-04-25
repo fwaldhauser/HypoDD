@@ -1,0 +1,6 @@
+This directory contains header files needed to compile hypoDD and related
+programs.  These files are referenced by include statements in the source
+files located in the subtree ../src .
+
+The *.inc files store the parameters that define the array dimensions.
+Describtion of the paramaters can be found in each file.

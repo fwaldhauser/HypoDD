@@ -1,0 +1,43 @@
+Description of the short program hista2ddsta.
+Fred Klein 2/2001
+
+This converts "standard" hypoinverse station files to the abbreviated
+format used by hypoDD and its companion program ph2dt.  hista2ddsta
+acts like a filter because it converts standard input to standard
+output.  There are no subroutines, so compile it like this:
+
+f77 hista2ddsta.f -o hista2ddsta
+
+The input station file has codes for site (5 letters), network (2
+letters) and component (3 letters).  hypoDD does not need multiple
+station components.  Therefore only one station line is output for a
+group of stations input together with the same site and net codes.  For
+example,
+
+Input stations:
+CAL   NC  VHZ
+CAL   NC  VHN
+
+Results in one output line:
+NCCAL
+
+Sample usage:
+hista2ddsta < felix.sta > station.dat
+
+Input format:
+col     length  format          content
+1       5       a5              station site code
+7       2       a2              station net code
+11      3       a3              station component code
+16      2       i2              latitude degrees
+19      7       f7.4            latitude minutes
+26      1       a1              s or S for south, north otherwise
+27      3       i3              longitude degrees
+31      7       f7.4            longitude minutes
+38      1       a1              e or E for east, west otherwise
+
+Output format (may be read free format):
+col     length  format          content
+1       7       a7              simple station code
+9       10      f10.6           latitude, decimal degrees, pos north
+20      11      f11.6           longitude, decimal degrees, pos east

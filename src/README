@@ -1,0 +1,28 @@
+Each subdirectory of this directory contains the source code for hypoDD
+or one of the associated commands.
+
+MAKING EXECUTABLE FILES
+Each subdirectory contains a simple Makefile.  To compile and load a
+program, just go to the appropriate directory and type
+
+	make
+
+or type 
+
+	make 
+
+in the current (./src) directory.
+
+It may be necessary to modify the Makefile slightly for different
+compilers.  The versions given here support the GNU g77 compiler, 
+SUN's f77 compiler, and the gfortran compiler for MacOS and Linux; 
+
+Before compiling, use the Makefiles to remove all files that can easily be
+re-generated.  Type
+
+	make clean
+
+SYMBOLIC LINKS
+Some sub-programs are used by more than one command.  In these cases,
+only one file is provided and the other directories contain symbolic
+links to it.

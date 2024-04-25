@@ -1,0 +1,139 @@
+HYPODD Version 2.1 beta  - June, 2016
+==========================================
+
+by: Felix Waldhauser, felixw@ldeo.columbia.edu
+    Lamont-Doherty Earth Observatory, Columbia University
+
+   
+			PURPOSE	
+
+HypoDD is a Fortran77 computer program package for relocating earthquakes
+with the double-difference algorithm of Waldhauser and Ellsworth (2000). 
+It incorporates phase-pick and/or cross-correlation P- and/or S-wave
+relative travel-time measurements. Residuals between observed and theoretical 
+travel time differences (or double-differences = DD) are minimized for pairs
+of earthquakes at each station while linking together all observed
+event/station pairs. A weighted least squares solution (SVD or LSQR) is found
+by iteratively adjusting the vector difference between hypocentral pairs.
+Layered 1D or 3D velocity models are used to solve the forward problem.
+
+A User Guide to installing and running hypoDD is included in the 
+package (hypoDD2_UserGuide.pdf; Waldhauser, 2001). 
+When referencing the program please indicate version number (hypoDD2.1). 
+
+Main changes/additions in hypoDD 2.1b:
+   - use of station elevation for travel time prediction
+   - accepts variable vp/vs ratios in layered velocity models (imod=1)
+   - use station specific velocity models possbile (imod=4)
+   - accepts source-station configurations where stations can be below source
+     (forward solution computed along straight rays)  (imod=5)
+   - acceptes 3D velocity models using the simul2000 ray tracer (originally 
+        implemented by Andreas Rietbrock) (imod=9)
+   - improved weighting scheme 
+   - backwards compatible with hypoDD 1.0 input files
+
+This software benefited from numerous user feedbacks and contributions over 
+the years, which are greatly appreciated!
+
+
+			VERSION HISTORY:
+
+Version 1.0 - 03/2001   (written while at USGS, Menlo Park)
+Version 1.1 - 10/2004
+Version 1.2 - 07/2010 
+Version 1.3 - 08/2010   (same as v1.2, but compiles with gfortran in addition
+			 to gcc/g77 and f77)
+Version 2.0b- 05/2011    
+Version 2.1b- 08/2011,09/2012/02/2012,06/2012,08/2012,01/2013,11/2015,
+	      06/2016 (this version)
+
+
+			DISCLAIMERS, WARRANTIES
+
+The program has been extensively tested, but is made available
+without warranty.  Users of the program are free to make modifications
+to the programs to meet their particular needs, but are asked not to
+distribute modified code to others. Tell me about your improvements
+and bug fixes, and I will add them to the code for everyone's benefit.
+Please use appropriate references and acknowledments when this software 
+is useful to you (see below).
+
+
+			REFERENCES
+
+Waldhauser, Felix, and William L. Ellsworth, A double-difference
+earthquake location algorithm: Method and application to the northern
+Hayward fault, California, Bull. Seism. Soc. Am. 90, 1353-1368, 2000.
+
+Waldhauser, Felix, hypoDD -- A program to compute double-difference
+hypocenter locations, U.S. Geological Survey Open-File Report 01-113, 2001.
+
+
+			DOWNLOADS
+
+The complete program package can be downloaded from 
+   http://www.ldeo.columbia.edu/~felixw/hypoDD.html
+
+Alternatively, these files can be downloaded via anonymous ftp from 
+ftp.ldeo.columbia.edu.  After login, cd archive/felix/HYPODD and get the
+(binary) gzip-compressed tar files
+   HYPODD_2.1.tar.gz   (source codes and user guide; 168Kb)
+   HYPODD_examples.tar.gz   (small and medium size example data sets; 1Mb)
+   HYPODD_moreExamples.tar.gz   (1 large example data sets; 9Mb)
+   README  (how to get started...)
+   BUGLIST_2.1  (continously updated bug list for HYPODD version 2.1)
+
+The files can be unpacked with the command
+   gunzip -c HYPODD_2.1.tar.gz | tar xf -
+
+
+			ORGANIZATION OF THE SOURCE CODES
+
+The file HYPODD_2.1.tar.gz contains a directory subtree containing source
+code and associated files implementing the "double-difference" earthquake-
+location method. This README file resides in the top-level directory.
+
+CONTENTS OF THE TOP-LEVEL DIRECTORY
+
+    README - This file.
+    doc - Directory containing tutorial documentation.
+    include - Directory containing source-code header files.
+    src - Directory containing source code for commands, in separate
+	subdirectories. 
+    utils - Various utility programs/scripts.
+
+Each directory contains its own README file explaining its contents
+and usage.  For installation of hypoDD see the README files in the
+src subtree.
+
+
+			TEST CASES AND EXAMPLES
+
+Example cases are included in the files HYPODD_examples.tar.gz (small 
+and medium size example data sets; 3MB) and HYPODD_moreExamples.tar.gz  (1 
+large example data sets; 20MB). These files are unpacked in the same manner 
+as the source-code file, described above.  Each directory contains a Readme 
+file.
+
+
+			IMPORTANT NOTE
+
+If the programs abort with 'Killed' when executed, then there is most
+likely not enough memory available on the computer on which the
+programs are started.  Switch to a larger computer or edit hypoDD.inc
+and/or ph2dt.inc in the directory include/ to adjust array dimensions
+according to the size of the problem to be solved or available computer
+memory.
+
+
+		    	BUG REPORTS, QUESTIONS, ENHANCEMENTS, ETC.
+
+Please send questions, bug reports, news about how you have improved
+the programs, etc. to felixw@ldeo.columbia.edu.
+
+
+			UPDATES ALERT
+
+Send email to felixw@ldeo.columbia.edu with 'HYPODD UPDATE' included in the
+subject line. 
+

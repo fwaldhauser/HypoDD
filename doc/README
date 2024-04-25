@@ -1,0 +1,13 @@
+This directory contains tutorial documentation for hypoDD.
+
+The documentation consists of the hypoDD manual (hypoDD2_UserGuide.pdf) which
+is an extension of the original manual published as an USGS open file report:
+  Waldhauser, F., HypoDD: A computer program to compute double-difference 
+  earthquake locations,  U.S. Geol. Surv. open-file report , 01-113, 
+  Menlo Park, California, 2001.
+
+and the description of the DD algorithm (Waldhauser_Ellsworth_BSSA2000.pdf):
+  Waldhauser F. and W.L. Ellsworth, A double-difference earthquake location 
+  algorithm: Method and application to the northern Hayward fault,  
+  Bull. Seism. Soc. Am., 90, 1353-1368, 2000. 
+
