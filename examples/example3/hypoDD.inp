@@ -1,0 +1,127 @@
+hypoDD_2
+* RELOC.INP:
+*--- input file selection
+dt.cc.w1.cc70.n4-40.nn25
+*
+*catalog P diff times:
+dt.ct
+*
+* event file:
+event.sel
+*
+* station file:
+station.sel
+*
+*--- output file selection
+* original locations:
+hypoDD.loc
+* relocations:
+hypoDD.reloc
+* station information:
+hypoDD.sta
+* residual information:
+hypoDD.res
+* source paramater information:
+hypoDD.src
+*
+*
+*--- data type selection: 
+* IDAT:  1= cross corr; 2= catalog; 3= cross & cat 
+* IPHA: 1= P; 2= S; 3= P&S
+* DIST:max dist [km] between cluster centroid and station 
+* IDAT   IPHA   MAXDIST  
+    3     3      150 	  
+*
+*--- event clustering:
+* OBSCC:    min # of obs/pair for crosstime data (0= no clustering)
+* OBSCT:    min # of obs/pair for network data (0= no clustering)
+* MINDIST:  min pair-station distance (-999= not active)
+* MAXDIST:  max pair-station distance (-999= not active)
+* MAXGAP:   max azimuthal gap (-999= not active)
+* OBSCC  OBSCT   MINDIST  MAXDIST   MAXGAP
+     0    10      -999     -999     -999
+*
+*--- solution control:
+* ISTART:  	1 = from single source; 2 = from network sources
+* ISOLV:	1 = SVD, 2=lsqr
+* IAQ:		remove airquakes: 0=NO, 1=YES
+* NSET:      	number of sets of iteration with specifications following
+*  ISTART  ISOLV  IAQ  NSET
+    2        2     0     5 
+*
+*--- data weighting and re-weighting: 
+* NITER: 		last iteration to used the following weights
+* WTCCP, WTCCS:		weight cross P, S 
+* WTCTP, WTCTS:		weight catalog P, S 
+* WRCC, WRCT:		residual threshold in sec for cross, catalog data 
+* WDCC, WDCT:  		max dist [km] between cross, catalog linked pairs
+* DAMP:    		damping (for lsqr only) 
+*       ---  CROSS DATA ----- ----CATALOG DATA ----
+* NITER  WTCCP  WTCCS  WRCC  WDCC  WTCTP  WTCTS  WRCT  WDCT DAMP
+*  1     1.0   1.0    10   10  1.0   1.0   10    10    10000
+  5     0.01   0.01  -999  -999   1.0    0.5     -999 -999    100
+  5     0.01   0.01  -999  -999   1.0    0.5      7    10    100
+  5     1.0    0.5   -999   2     0.01   0.005    7    10    100
+  5     1.0    0.5    6     0.5   0.001  0.0005   7    10    100
+  5     1.0    0.5    5     0.2   0.001  0.0005   7    10    100
+*
+*--- FORWARD MODEL:
+* IMOD  0= 1D local, layered, P velocity w/ fixed vp/vs ratio (hypoDD_1);
+*       1= 1D local, layered, P velocity w/ variable vp/vs ratio 
+*       9= 3D local model (simulps raytracer)
+*
+*--- 1D model, fixed vp/vs ratio:
+* NLAY:		number of model layers  
+* RATIO:	vp/vs ratio 
+* TOP:		depths of top of layer (km) 
+* VEL: 		layer velocities (km/s)
+* NLAY  RATIO 
+* MOD_TOP , MOD_V
+* NCSN parkfield
+0
+14  1.73
+0.00 0.25 1.50 1.75 2.00 2.25 2.50 3.50 4.50 5.50 6.50 9.00 15.00 25.00
+1.42 3.24 4.82 5.01 5.19 5.37 5.55 5.63 5.71 5.79 5.87 6.15  6.60  8.00
+**0.00 0.25 1.50 2.50 3.50 5.00 6.00 9.00 15.00 25.00
+**1.42 3.24 4.82 5.36 5.60 5.65 5.90 6.15  6.60  8.00
+*
+*--- 1D model, variable  vp/vs ratio:
+* TOP:		depths of top of layer (km) 
+* VEL: 		layer velocities (km/s)
+* RATIO:   	layer ratios 
+* NCSN parkfield
+*1
+***0.00 0.25 1.50 2.50 3.50 5.00 6.00 9.00 15.00 25.00 
+***1.42 3.24 4.82 5.36 5.60 5.65 5.90 6.15  6.60  8.00 
+***1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73  1.73  1.73 
+*0.00 0.25 1.50 1.75 2.00 2.25 2.50 3.50 4.50 5.50 6.50 9.00 15.00 25.00 
+*1.42 3.24 4.82 5.01 5.19 5.37 5.55 5.63 5.71 5.79 5.87 6.15  6.60  8.00
+*1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73  1.73  1.73
+*
+*--- Local 3D model:
+* 3DMOD:                name of 3D model
+* LAT_3D,LON_3D:        origin of 3D velocity model
+* ROT_3D:               Rotation of cartesian coordinate system
+*                       pos= anti clockwise
+* raytracing parameters (see hypoDD manual)
+* 
+* 3DMOD 
+* LAT_3D  LON_3D  ROT_3D
+* ipha, ndip, iskip, scale1, scale2, xfax, tlim, nitpb
+*9
+*pkf3D_PS.vel
+***35.96     -120.504667    -137.199997
+*35.96     -120.504667    -42.800001 
+*2     9     2      1       1      1.35  0.0005  50
+*
+***pkf3D_P.vel
+***35.96    -120.504667    -139.2
+***1     9     2      1       1      1.35  0.0005  50
+**
+*
+*--- event selection:
+* CID: 	cluster to be relocated (0 = all)
+* ID:	cuspids of event to be relocated (8 per line)
+* CID    
+    1      
+* ID

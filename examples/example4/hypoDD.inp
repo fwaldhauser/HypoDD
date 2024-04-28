@@ -1,0 +1,109 @@
+hypoDD_2
+* RELOC.INP:
+*--- input file selection
+
+*
+*catalog P diff times:
+dt.ct
+*
+* event file:
+event.sel.noise
+*event.sel
+*
+* station file:
+station.sel.z
+*
+*--- output file selection
+* original locations:
+hypoDD.loc
+* relocations:
+hypoDD.reloc
+* station information:
+hypoDD.sta
+* residual information:
+hypoDD.res
+* source paramater information:
+*hypoDD.src
+
+*
+*--- data type selection: 
+* IDAT:  1= cross corr; 2= catalog; 3= cross & cat 
+* IPHA: 1= P; 2= S; 3= P&S
+* DIST:max dist [km] between cluster centroid and station 
+* IDAT   IPHA   MAXDIST  
+    2     3      120 	  
+*
+*--- event clustering:
+* OBSCC:    min # of obs/pair for crosstime data (0= no clustering)
+* OBSCT:    min # of obs/pair for network data (0= no clustering)
+* MINDIST:  min pair-station distance (-999= not active)
+* MAXDIST:  max pair-station distance (-999= not active)
+* MAXGAP:   max azimuthal gap (-999= not active)
+* OBSCC  OBSCT    MINDIST  MAXDIST  MAXGAP
+     0     8        -999     -999    -999 
+*
+*--- solution control:
+* ISTART:  	1 = from single source; 2 = from network sources
+* ISOLV:	1 = SVD, 2=lsqr
+* IAQ:		remove airquakes: 0=NO, 1=YES
+* NSET:      	number of sets of iteration with specifications following
+*  ISTART  ISOLV  IAQ  NSET
+    2        2     1     1 
+*
+*--- data weighting and re-weighting: 
+* NITER: 		last iteration to used the following weights
+* WTCCP, WTCCS:		weight cross P, S 
+* WTCTP, WTCTS:		weight catalog P, S 
+* WRCC, WRCT:		residual threshold in sec for cross, catalog data 
+* WDCC, WDCT:  		max dist [km] between cross, catalog linked pairs
+* DAMP:    		damping (for lsqr only) 
+*       ---  CROSS DATA ----- ----CATALOG DATA ----
+* NITER  WTCCP  WTCCS  WRCC  WDCC  WTCTP  WTCTS  WRCT  WDCT DAMP
+  10      0.01   0.005  -999  -999  1.00   0.5   -999   -999  30  
+*
+*--- FORWARD MODEL:
+* IMOD  0= 1D local, layered, P velocity w/ fixed vp/vs ratio (hypoDD1.0);
+*       1= 1D local, layered, P velocity w/ variable vp/vs ratio 
+*       4= 1D local, layered, station specific models
+*       5= 1D, straight ray paths (constant velocity) 
+*       9= 3D local model (simulps raytracer)
+*
+*--- 1D model, fixed vp/vs ratio:
+* NLAY:		number of model layers  
+* RATIO:	vp/vs ratio 
+* TOP:		depths of top of layer (km) 
+* VEL: 		layer velocities (km/s)
+* IMOD
+* NLAY  RATIO 
+* MOD_TOP , MOD_V
+*0
+*9     1.73
+*0.00 1.00 2.00 3.00 5.00 6.00 9.00 15.00 25.00
+*1.42 4.82 5.36 5.60 5.65 5.90 6.15  6.60  8.00 
+*
+*--- 1D model, variable  vp/vs ratio:
+* TOP:		depths of top of layer (km) 
+* VEL: 		layer velocities (km/s) 
+* RATIO:   	layer ratios 
+* IMOD
+*1
+*0.00 0.25 1.50 2.50 3.50 5.00 6.00 9.00 15.00 25.00
+*1.42 3.24 4.82 5.36 5.60 5.65 5.90 6.15  6.60  8.00
+*1.73 1.73 1.73 1.73 1.73 1.73 1.73 1.73  1.73  1.73
+*
+*--- 1D model, straight ray path 
+* TOP:		depths of top of layer (km) 
+* VEL: 		layer velocities (km/s) 
+* RATIO:   	layer ratios  
+* IMOD
+5
+0.00 
+4.00 
+1.73 
+*
+*--- event selection:
+* CID: 	cluste 0r to be relocated (0 = all)
+* ID:	cuspids of event to be relocated (8 per line)
+* CID    
+    1      
+* ID

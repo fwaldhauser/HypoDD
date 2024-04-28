@@ -1,0 +1,23 @@
+./example3
+
+586 events on the San Andreas Fault near Parkfield including catalog and 
+cross correlation P- and S-wave data. Two 3D velocity models in simulps
+format are included (can be used w/ hypoDD.inp.v2):
+- pkf3D_PS.vel: w/ P- and S-velocities (Ref ???)
+- pkf3D_P.vel: w/ P-velocities only (Thurber et al., BSSA,96,38-49,2006)
+
+To rerun this example type the following commands:
+
+../../src/ph2dt/ph2dt ph2dt.inp
+	to get travel time differences for pairs of earthquakes
+
+../../src/hypoDD/hypoDD hypoDD.inp.v1  
+	hypoDD 1 (old) input file format (use of 1D model only)
+or
+../../src/hypoDD/hypoDD hypoDD.inp
+	hypoDD 2.0 input file format (use of 1D or 3D model)
+	to run hypoDD to get double-difference locations
+
+To display the results with the enclosed Matlab script eqplot, open a Matlab window in this directory and type eqplot in the Matlab window. Edit the parameters at the beginning of the script to make changes to the view of the plot.
+
+Felix Waldhauser, 05/2011, felixw@ldeo.columbia.edu

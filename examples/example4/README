@@ -1,0 +1,14 @@
+./example4
+
+21 events (event.sel) with synthetic delay times computed in a constant 
+velocity model (vp=4km/s) to stations that locate both above and below the 
+sources.  event.sel.noise has noise added to the inital locations. 
+Uses IMOD=5 to relocate.
+
+To rerun this example type the following commands:
+
+../../src/hypoDD/hypoDD hypoDD.inp
+
+To display the results with the enclosed Matlab script eqplot, open a Matlab window in this directory and type eqplot in the Matlab window. Edit the parameters at the beginning of the script to make changes to the view of the plot.
+
+Felix Waldhauser, 09/2011, felixw@ldeo.columbia.edu

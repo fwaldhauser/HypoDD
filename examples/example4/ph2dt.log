@@ -1,0 +1,24 @@
+starting ph2dt (v2.0b - 05/2011)...     Fri Sep 16 23:44:39 2011`
+reading data ...
+ > stations =           36
+ > events total =          756
+ > events selected =          756
+ > phases =         1512
+forming dtimes...
+ Reporting missing stations (STA) and 
+    outliers (STA,ID1,ID2,OFFSET (km),T1,T2,T1-T2):
+ > P-phase pairs total =         7560
+ > S-phase pairs total =         7560
+ > outliers =            0  (           0 %)
+ > phases at stations not in station list =            0
+ > phases at distances larger than MAXDIST =            0
+ > P-phase pairs selected =         7560  (         100 %)
+ > S-phase pairs selected =         7560  (         100 %)
+ > weakly linked events =          756  (         100 %)
+ > linked event pairs =         7561
+ > average links per pair =            1
+ > average offset (km) betw. linked events =   0.6523399    
+ > avg. offset (km) betw. strongly linked events =             NaN
+ > max. offset (km) betw. strongly linked events =    0.000000    
+
+Done.  Fri Sep 16 23:44:40 2011`

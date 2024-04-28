@@ -1,0 +1,28 @@
+This directory contains several example data sets that can be used to learn how to run the program package hypoDD.
+
+The examples include the following data sets:
+
+         # of events  catalogP  catalogS  xcorrP  xcorrS  model    region
+example1      16          x          x      x       x     1D      Hayward
+example2     308          x          x      x       x     1D      Calaveras 
+example3     586          x          x      x       x    1D/3D    Parkfield 
+example4      21         synthetic delay times  	 const V; borehole  stat
+exampleXL  ~10000          x          x                    1D     LongValley
+
+Because of the size of exampleXL, this file comes in a different package named HYPODD_moreExamples.tar.gz.
+
+See Readme files in each directory on how to re-run the data sets. Note that 
+hypoDD_2 is backwards compatible: input files created for hypoDD_1 will run 
+with hypoDD_2. Each data sets includes both hypoDD_1 (hypoDD.inp.v1) and 
+hypoDD_2 (hypoDD.inp) style input files.  
+
+The program results should not depend on the various array dimensions.
+The program will run if the arrays are large enough, or fail if they
+are not. See hypoDD.inc for parameter description.
+
+Note that if the arrays are not dimensioned large enough, hypoDD will
+report an error stating the parameter to increase, and stop.
+
+Felix Waldhauser & Fred Klein, 05/2001
+Felix Waldhauser 05/2011  felixw@ldeo.columbia.edu
+Felix Waldhauser 08/2011  felixw@ldeo.columbia.edu
